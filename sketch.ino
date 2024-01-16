@@ -49,10 +49,13 @@ if(WiFi.status()== WL_CONNECTED){
       int httpResponseCode = http.GET();
       
       if (httpResponseCode>0) {
-        Serial.print("HTTP Response code: ");
-        Serial.println(httpResponseCode);
         String payload = http.getString();
-        Serial.println(payload);
+        payload.replace("}","");
+        payload = payload.substring(payload.indexOf(":")+1,payload.length());
+        if(payload.equals("true"))
+          return true;
+        else
+          return false;
       }
       else {
         Serial.print("Error code: ");
@@ -79,8 +82,6 @@ void setup() {
   Serial.println("");
   Serial.print("Connected to WiFi network with IP Address: ");
   Serial.println(WiFi.localIP());
- 
-  Serial.println("Timer set to 5 seconds (timerDelay variable), it will take 5 seconds before publishing the first reading.");
 }
 
 String input = "";
