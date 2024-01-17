@@ -72,7 +72,7 @@ if(WiFi.status()== WL_CONNECTED){
 
 void setup() {
   Serial.begin(115200); 
-
+  pinMode(12, OUTPUT);
   WiFi.begin(ssid, password);
   Serial.println("Connecting");
   while(WiFi.status() != WL_CONNECTED) {
@@ -91,7 +91,11 @@ void loop() {
 
   if (key) {
     if(key=='#'){
-      Serial.println(check(input));
+      if(check(input)){
+        digitalWrite(12, HIGH);
+        delay(5000);
+        digitalWrite(12, LOW);
+      }
       input="";
     }
     else
