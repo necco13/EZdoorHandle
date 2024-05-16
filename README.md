@@ -1,1 +1,2 @@
-# Programska koda za ESP32 (EZDoor)
+# EZDoor vrata
+mikrokrmilnik: ESP-WROOM-32
